@@ -1,7 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+)
+
+func home(w http.ResponseWriter, r *http.Request) {
+    w.Write([]byte("Hello from SnippetBox"))
+}
 
 func main() {
-    fmt.Println("Hello World!")
+    mux := http.NewServeMux()
+    mux.HandleFunc("/", home)
+
+    log.Print("starting server on :8080")
+    log.Fatal(http.ListenAndServe(":8080", mux))
 }
