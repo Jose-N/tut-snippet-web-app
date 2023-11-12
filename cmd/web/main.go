@@ -1,16 +1,19 @@
 package main
 
 import (
-    "database/sql"
+	"database/sql"
 	"flag"
 	"log/slog"
 	"net/http"
 	"os"
-    _ "github.com/go-sql-driver/mysql"
+
+	"github.com/Jose-N/tut-snippet-web-app/internal/models"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type application struct {
     logger *slog.Logger
+    snippets *models.SnippetModel
 }
 
 func main() {
@@ -34,6 +37,7 @@ func main() {
 
     app := &application{
         logger: logger,
+        snippets: &models.SnippetModel{DB: db},
     }
 
     logger.Info("starting server","addr", *addr)
