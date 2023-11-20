@@ -20,7 +20,7 @@ func main() {
     addr := flag.String("addr", ":8080", "HTTP network address")
     dsn := flag.String(
         "dsn",
-        "#",
+        "",
         "MySQL datasource name",
     )
     flag.Parse()
